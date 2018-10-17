@@ -12,6 +12,8 @@ import pl.coderslab.dao.CategoryDao;
 import pl.coderslab.entity.Article;
 import pl.coderslab.entity.Author;
 
+import java.util.List;
+
 @Controller
 public class HomePageController {
 
@@ -28,10 +30,19 @@ public class HomePageController {
     @RequestMapping("/addAuthor")
     @ResponseBody
     public String addAuthor(@RequestParam String firstName, @RequestParam String lastName,
-                            @RequestParam Article article) {
+                            @RequestParam List<Integer> articleIds) {
         Author author = new Author();
         author.setFirstName(firstName);
         author.setLastName(lastName);
-        author.
+        if (articleIds != null) {
+            for(int id : articleIds) {
+                Article article = articleDao.findById(id);
+                author.getArticles().add(article);
+            }
+        }
+        authorDao.save(author);
+        return "Zapis do bazy udany " + author.toString();
+
     }
+
 }
