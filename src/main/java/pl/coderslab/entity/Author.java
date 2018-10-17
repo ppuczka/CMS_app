@@ -14,6 +14,10 @@ public class Author {
 
     private String lastName;
 
+    @OneToMany
+    private Article article;
+
+
     public Author() {
     }
 
