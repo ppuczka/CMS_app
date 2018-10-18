@@ -4,7 +4,7 @@ package pl.coderslab.entity;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +19,10 @@ public class Article {
     @Column(length = 200)
     private String title;
 
-    @OneToOne(mappedBy = "author", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     private Author author;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Category> categories = new ArrayList<>();
 
     private String content;
@@ -40,52 +38,60 @@ public class Article {
     public Article() {
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
-    }
-
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public Author getAuthor() {
         return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     public List<Category> getCategories() {
         return categories;
     }
 
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
     public String getContent() {
         return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Date getCreated() {
         return created;
     }
 
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
     public Date getUpdated() {
         return updated;
+    }
+
+    public void setUpdated(Date updated) {
+        this.updated = updated;
     }
 
     @Override

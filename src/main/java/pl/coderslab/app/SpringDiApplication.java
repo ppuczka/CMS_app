@@ -13,6 +13,7 @@ public class SpringDiApplication {
 
         HomePageController homePageController = context.getBean(HomePageController.class);
 
+        homePageController.getAllArticles();
 
 
     }

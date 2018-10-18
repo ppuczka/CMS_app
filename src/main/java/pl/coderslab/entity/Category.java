@@ -1,5 +1,7 @@
 package pl.coderslab.entity;
 
+import org.springframework.web.bind.annotation.Mapping;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,8 +18,8 @@ public class Category {
     @Column(nullable = true)
     private String description;
 
-    @OneToMany
-    private Article article;
+//    @Column(name = "articles")
+//    private Article article;
 
     public Category() {
     }
