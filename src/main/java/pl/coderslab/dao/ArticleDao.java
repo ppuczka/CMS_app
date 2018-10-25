@@ -40,9 +40,9 @@ public class ArticleDao {
 //    }
 
 
-    public List<Article> getAll() {
+    public List<Article> getAll(int limit) {
        Query q1  = entityManager.createQuery("SELECT a FROM Article a");
-       q1.setMaxResults(5);
+       q1.setMaxResults(limit);
        List<Article> list = q1.getResultList();
        return list;
 
