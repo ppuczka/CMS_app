@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-<body>
+<body class="p-3 mb-2 bg-dark text-white">
 <h1>CMS HOME PAGE</h1>
 <table class="table table-striped table-dark">
     <thead>
@@ -23,21 +23,23 @@
         <th>Created</th>
         <th>Updated</th>
         <th>Title</th>
-        <th>Author Id</th>
+        <th>Author</th>
         <th>Categories</th>
     </tr>
     </thead>
 
     <tbody>
         <c:forEach items="${articles}" var="article">
-        <tr>
             <td>${article.id}</td>
             <td>${article.content}</td>
             <td>${article.created}</td>
             <td>${article.updated}</td>
             <td>${article.title}</td>
-            <td>${article.author}</td>
-            <td>${article.categories}</td>
+            <td>${article.author.firstName} ${article.author.lastName}</td>
+            <td><c:forEach items="${article.categories}" var="category">
+             ${category.name}<br/>
+            </c:forEach></td>
+
         </tr>
         </c:forEach>
     </tbody>
