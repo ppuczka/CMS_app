@@ -15,6 +15,8 @@
 </head>
 <body class="p-3 mb-2 bg-dark text-white">
 <h1>CMS HOME PAGE</h1>
+<jsp:include page="/WEB-INF/views/links.jsp"></jsp:include>
+<h2><p align="centre">List of Authors</p></h2>
 <table class="table table-striped table-dark">
     <thead>
     <tr>
@@ -30,6 +32,7 @@
 
     <tbody>
         <c:forEach items="${articles}" var="article">
+           <tr>
             <td>${article.id}</td>
             <td>${article.content}</td>
             <td>${article.created}</td>
@@ -37,18 +40,35 @@
             <td>${article.title}</td>
             <td>${article.author.firstName} ${article.author.lastName}</td>
             <td><c:forEach items="${article.categories}" var="category">
-             ${category.name}<br/>
-            </c:forEach></td>
-
-        </tr>
+                    ${category.description}</td>
+            </c:forEach>
+           </tr>
         </c:forEach>
     </tbody>
-
-
-    </thead>
-
-
 </table>
+<h2><p align="centre">List of Categories</p></h2>
 
+<table class="table table-striped table-dark">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Author</th>
+        <th>Categories</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach items="${categories}" var="category">
+       <tr>
+        <td>${category.id}</td>
+        <td>${category.name}</td>
+        <td>${category.description}</td>
+           <td><a href="">Show Articles</a></td>
+       </tr>
+           </c:forEach>
+
+
+    </tbody>
+</table>
 </body>
 </html>

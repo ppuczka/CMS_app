@@ -1,8 +1,8 @@
 package pl.coderslab.entity;
 
-import org.springframework.web.bind.annotation.Mapping;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "categories")
@@ -18,8 +18,9 @@ public class Category {
     @Column(nullable = true)
     private String description;
 
-//    @Column(name = "articles")
-//    private Article article;
+    @ManyToOne
+    @JoinColumn(name = "artilce_id")
+    private Article article;
 
     public Category() {
     }
@@ -48,12 +49,21 @@ public class Category {
         this.description = description;
     }
 
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
+    }
+
     @Override
     public String toString() {
         return "Category{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", article=" + article +
                 '}';
     }
 }
