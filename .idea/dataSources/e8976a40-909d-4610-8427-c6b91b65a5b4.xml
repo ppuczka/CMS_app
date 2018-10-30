@@ -1073,7 +1073,16 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="268" parent="248" name="PRIMARY">
+    <column id="268" parent="248" name="artilce_id">
+      <Position>4</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="269" parent="248" name="FK33x0b8j5q73glrxu5146qegho">
+      <ColNames>artilce_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="270" parent="248" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

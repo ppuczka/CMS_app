@@ -2,6 +2,7 @@ package pl.coderslab.entity;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,9 +19,8 @@ public class Category {
     @Column(nullable = true)
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "artilce_id")
-    private Article article;
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "categories")
+    private List<Article> articles = new ArrayList<>();
 
     public Category() {
     }
@@ -49,12 +49,12 @@ public class Category {
         this.description = description;
     }
 
-    public Article getArticle() {
-        return article;
+    public List<Article> getArticles() {
+        return articles;
     }
 
-    public void setArticle(Article article) {
-        this.article = article;
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class Category {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", article=" + article +
+                ", articles=" + articles +
                 '}';
     }
 }

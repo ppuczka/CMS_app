@@ -29,8 +29,7 @@ public class CategoryDao {
         return entityManager.find(Category.class, id);
     }
 
-    public void update(Category category) {
-        entityManager.merge(category);
+    public void update(Category category) {entityManager.merge(category);
     }
 
     public void delete(Category category){
@@ -43,4 +42,6 @@ public class CategoryDao {
         List<Category> list = q1.getResultList();
         return list;
     }
+
+
 }

@@ -5,7 +5,6 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,7 +21,7 @@ public class Article {
     @OneToOne(fetch = FetchType.EAGER)
     private Author author;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "article")
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Category> categories;
 
     private String content;

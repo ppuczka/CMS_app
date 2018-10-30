@@ -11,7 +11,7 @@
     <title>links</title>
 </head>
 <body>
-<a href="/home">Home Page</a>
+<a href="/home">Home Page</a> <a href ="/category/showAll">Show Categories</a>
 
 </body>
 </html>

@@ -16,35 +16,35 @@
 <body class="p-3 mb-2 bg-dark text-white">
 <h1>CMS HOME PAGE</h1>
 <jsp:include page="/WEB-INF/views/links.jsp"></jsp:include>
-<h2><p align="centre">List of Authors</p></h2>
-<table class="table table-striped table-dark">
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Content</th>
-        <th>Created</th>
-        <th>Updated</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Categories</th>
-    </tr>
-    </thead>
+    <h2><p align="centre">List of Authors</p></h2>
+    <table class="table table-striped table-dark">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Content</th>
+            <th>Created</th>
+            <th>Updated</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Categories</th>
+        </tr>
+        </thead>
 
-    <tbody>
+        <tbody>
         <c:forEach items="${articles}" var="article">
-           <tr>
-            <td>${article.id}</td>
-            <td>${article.content}</td>
-            <td>${article.created}</td>
-            <td>${article.updated}</td>
-            <td>${article.title}</td>
-            <td>${article.author.firstName} ${article.author.lastName}</td>
-            <td><c:forEach items="${article.categories}" var="category">
-                    ${category.description}</td>
-            </c:forEach>
-           </tr>
+            <tr>
+                <td>${article.id}</td>
+                <td>${article.content}</td>
+                <td>${article.created}</td>
+                <td>${article.updated}</td>
+                <td>${article.title}</td>
+                <td>${article.author.firstName} ${article.author.lastName}</td>
+                <td><c:forEach items="${article.categories}" var="category">
+                        ${category.description}</td>
+                </c:forEach>
+            </tr>
         </c:forEach>
-    </tbody>
+        </tbody>
 </table>
 <h2><p align="centre">List of Categories</p></h2>
 
@@ -52,8 +52,8 @@
     <thead>
     <tr>
         <th>Id</th>
-        <th>Author</th>
-        <th>Categories</th>
+        <th>Name</th>
+        <th>Desription</th>
         <th>Action</th>
     </tr>
     </thead>
@@ -63,7 +63,7 @@
         <td>${category.id}</td>
         <td>${category.name}</td>
         <td>${category.description}</td>
-           <td><a href="">Show Articles</a></td>
+           <td><a href="/getCatArticles/${category.id}">Show Articles</a></td>
        </tr>
            </c:forEach>
 

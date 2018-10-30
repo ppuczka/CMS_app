@@ -3,6 +3,7 @@ package pl.coderslab.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.coderslab.dao.ArticleDao;
@@ -30,6 +31,14 @@ public class HomePageController {
         model.addAttribute("articles", articles);
         model.addAttribute("categories", categories);
         return "/homePage";
+    }
+
+    @RequestMapping(path ="/getCatArticles/{id}", method = RequestMethod.GET)
+    public String categorieArticles(@PathVariable int id, Model model) {
+        Category category = categoryDao.findById(id);
+        List<Article> catArticles = category.getArticles();
+        model.addAttribute("catArticles", catArticles);
+        return "/catArticles";
     }
 
 
