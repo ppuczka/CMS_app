@@ -16,7 +16,7 @@
 <body class="p-3 mb-2 bg-dark text-white">
 <h1>CMS HOME PAGE</h1>
 <jsp:include page="/WEB-INF/views/links.jsp"></jsp:include>
-    <h2><p align="centre">List of Authors</p></h2>
+    <h2><p align="centre">List of Articles</p></h2>
     <table class="table table-striped table-dark">
         <thead>
         <tr>

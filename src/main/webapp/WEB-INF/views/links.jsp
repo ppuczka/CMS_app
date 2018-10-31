@@ -12,7 +12,7 @@
 </head>
 <body>
 <a href="/home">Home Page || </a> <a href ="/category/showAll">Show Categories || </a>
-<a href="/author/showAll">Show Authors ||</a>
+<a href="/author/showAll">Show Authors ||</a><a href="/article/showAll">Show Articles</a>
 
 </body>
 </html>

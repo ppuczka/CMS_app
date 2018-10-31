@@ -93,6 +93,7 @@ public class Article {
         this.updated = updated;
     }
 
+
     @Override
     public String toString() {
         return "Article{" +

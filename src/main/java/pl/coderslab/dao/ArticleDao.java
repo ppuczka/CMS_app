@@ -22,22 +22,22 @@ public class ArticleDao {
     ArticleDao articleDao;
 
 
-//    public void save(Article article) {
-//        entityManager.persist(article);
-//    }
-//
-//    public Article findById(int id) {
-//        return entityManager.find(Article.class, id);
-//    }
-//
-//    public void update(Article article) {
-//        entityManager.merge(article);
-//    }
-//
-//    public void delete(Article article){
-//        entityManager.remove(entityManager.contains(article) ?
-//                article : entityManager.merge(article));
-//    }
+    public void save(Article article) {
+        entityManager.persist(article);
+    }
+
+    public Article findById(int id) {
+        return entityManager.find(Article.class, id);
+    }
+
+    public void update(Article article) {
+        entityManager.merge(article);
+    }
+
+    public void delete(Article article){
+        entityManager.remove(entityManager.contains(article) ?
+                article : entityManager.merge(article));
+    }
 
 
     public List<Article> getAll(int limit) {

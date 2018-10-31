@@ -16,15 +16,6 @@ public class Author {
 
     private String lastName;
 
-//    private List<Article> articles = new ArrayList<>();
-
-//    public List<Article> getArticles() {
-//        return articles;
-//    }
-//
-//    public void setArticles(List<Article> articles) {
-//        this.articles = articles;
-//    }
 
     public Author() {
     }
@@ -51,6 +42,11 @@ public class Author {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    private String FirstNameLastName() {
+        return this.firstName + " " + this.lastName;
+
     }
 
     @Override
