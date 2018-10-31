@@ -11,7 +11,8 @@
     <title>links</title>
 </head>
 <body>
-<a href="/home">Home Page</a> <a href ="/category/showAll">Show Categories</a>
+<a href="/home">Home Page || </a> <a href ="/category/showAll">Show Categories || </a>
+<a href="/author/showAll">Show Authors ||</a>
 
 </body>
 </html>

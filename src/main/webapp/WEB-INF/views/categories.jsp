@@ -15,7 +15,6 @@
 </head>
 <body class="p-3 mb-2 bg-dark text-white">
 <jsp:include page="/WEB-INF/views/links.jsp"></jsp:include>
-</table>
 <h2><p align="centre">List of Categories</p></h2>
 
 <table class="table table-striped table-dark">
@@ -42,7 +41,6 @@
 
     </tbody>
 
-
-
+</table>
 </body>
 </html>
