@@ -1,6 +1,9 @@
 package pl.coderslab.entity;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,13 +15,16 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotEmpty
     private String firstName;
 
+    @NotEmpty
     private String lastName;
 
 
     public Author() {
     }
+
 
     public int getId() {
         return id;

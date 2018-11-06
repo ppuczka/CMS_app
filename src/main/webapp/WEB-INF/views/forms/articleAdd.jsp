@@ -22,8 +22,8 @@
     Article Author: <form:select path="author.id" items="${authors}" itemValue="id" itemLabel="lastName"/> <br/><br/><br/>
     Article Categories: <form:select path="categories" multiple="true" items="${categories}" itemValue="id" itemLabel="name"/> <br/><br/><br/>
     Article Content: <form:input path="content"/><br/><br/><br/>
-    Article Date Created: <form:input path="created"/><br/><br/><br/>
-    Article Date Updated: <form:input path="updated"/><br/><br/><br/>
+    <%--Article Date Created: <form:input path="created"/><br/><br/><br/>--%>
+    <%--Article Date Updated: <form:input path="updated"/><br/><br/><br/>--%>
         <input type="submit" value="save">
 </form:form>
 

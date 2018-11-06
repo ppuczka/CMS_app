@@ -2,6 +2,7 @@ package pl.coderslab.entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class Category {
     private int id;
 
     @Column(length = 100, nullable = false)
+    @Size(min = 5)
     private String name;
 
     @Column(nullable = true)

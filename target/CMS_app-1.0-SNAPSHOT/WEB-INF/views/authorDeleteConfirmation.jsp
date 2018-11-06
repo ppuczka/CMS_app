@@ -17,7 +17,7 @@
 <h3 align="centre">Please confirm deletion:</h3>
 <a href="/author/del/${id}">YES</a>
 <a href="/author/showAll">NO</a>
-tly
+
 
 </body>
 </html>

@@ -4,6 +4,8 @@ package pl.coderslab.entity;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
@@ -16,14 +18,19 @@ public class Article {
     private int id;
 
     @Column(length = 200)
+    @NotNull
+    @Size(max = 200)
     private String title;
 
     @OneToOne(fetch = FetchType.EAGER)
     private Author author;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+//    @NotNull
     private List<Category> categories;
 
+    @NotNull
+    @Size(max = 500)
     private String content;
 
     @CreationTimestamp

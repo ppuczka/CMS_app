@@ -20,8 +20,8 @@
         modelAttribute="author">
     Author First Name: <form:input path="firstName"/> <br/></br><br/>
     Author Last Name: <form:input path="lastName"/> <br/>
-        <%--<form:select path="articles" items="${articles}" itemValue="id" itemLabel="title" multiple="true"/> <br/>--%>
-        <input type="submit" value="save">
+    <form:errors path="*"/>
+    <input type="submit" value="save">
         <form:hidden path="id"/>
 </form:form>
 

@@ -17,10 +17,10 @@
 <jsp:include page="/WEB-INF/views/links.jsp"></jsp:include>
 <H1>Edit selected Author</H1>
 <form:form method="post"
-        modelAttribute="author">
+        modelAttribute="article">
     Author First Name: <form:input path="firstName"/> <br/></br><br/>
     Author Last Name: <form:input path="lastName"/> <br/>
-        <%--<form:select path="articles" items="${articles}" itemValue="id" itemLabel="title" multiple="true"/> <br/>--%>
+    <form:select path="articles" items="${articles}" itemValue="id" itemLabel="title" multiple="true"/> <br/>
         <input type="submit" value="save">
         <form:hidden path="id"/>
 </form:form>

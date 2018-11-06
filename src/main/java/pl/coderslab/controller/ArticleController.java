@@ -14,6 +14,7 @@ import pl.coderslab.entity.Article;
 import pl.coderslab.entity.Author;
 import pl.coderslab.entity.Category;
 
+import java.sql.Date;
 import java.util.Collection;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class ArticleController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String add(Model model) {
+    public String addForm(Model model) {
         Article article = new Article();
         model.addAttribute("article",article);
         return "/forms/articleAdd";
@@ -62,6 +63,7 @@ public class ArticleController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(@ModelAttribute Article article) {
+        System.out.println("article = " + article);
         articleDao.save(article);
         return "redirect:/article/showAll";
     }

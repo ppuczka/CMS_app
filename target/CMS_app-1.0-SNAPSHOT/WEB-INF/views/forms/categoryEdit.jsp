@@ -19,9 +19,10 @@
 <form:form method="post"
         modelAttribute="category">
     Category Name: <form:input path="name"/> <br/>
-    Cartegory Description: <form:input path="description"/> <br/>
-        <%--<form:select path="articles" items="${articles}" itemValue="id" itemLabel="title" multiple="true"/> <br/>--%>
+    Category Description: <form:input path="description"/> <br/>
+    Category Article: <form:select path="article.id" items="${art}" itemValue="id" itemLabel="title"/> <br/>
         <input type="submit" value="save">
+        <form:errors path="*"/>
         <form:hidden path="id"/>
 </form:form>
 

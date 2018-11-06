@@ -1,5 +1,7 @@
 package pl.coderslab.config;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.LocaleContextResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -37,15 +40,15 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         return tm;
     }
 //
-//    @Override
-//    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-//        final MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-//        final ObjectMapper objectMapper = new ObjectMapper();
-//        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-//        converter.setObjectMapper(objectMapper);
-//        converters.add(converter);
-//        super.configureMessageConverters(converters);
-//    }
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        final MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        final ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        converter.setObjectMapper(objectMapper);
+        converters.add(converter);
+        super.configureMessageConverters(converters);
+    }
 
     @Bean
     public ViewResolver viewResolver() {
@@ -60,6 +63,11 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         SessionLocaleResolver localeResolver = new SessionLocaleResolver();
         localeResolver.setDefaultLocale(new Locale("pl", "PL"));
         return localeResolver;
+    }
+
+    @Override
+    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
 
 }

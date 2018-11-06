@@ -1,15 +1,16 @@
 package pl.coderslab.controller;
 
-import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.dao.ArticleDao;
 import pl.coderslab.dao.CategoryDao;
 import pl.coderslab.entity.Article;
 import pl.coderslab.entity.Category;
 
+import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;
 
@@ -42,14 +43,12 @@ public class CategoryController {
 
     }
 
-    @ModelAttribute("articles")
-    public Collection<Article> populateArticles() {
-        return this.articleDao.getAll();
-
-    }
 
     @RequestMapping(value = "/catEdit/**", method = RequestMethod.POST)
-    public String processForm(@ModelAttribute Category category) {
+    public String processForm(@Valid @ModelAttribute Category category, BindingResult result) {
+        if (result.hasErrors()) {
+            return "/catEdit/{id}";
+        }
         categoryDao.update(category);
         return "redirect:/category/showAll";
     }
@@ -74,9 +73,18 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(@ModelAttribute Category category) {
+    public String add(@Valid @ModelAttribute Category category, BindingResult result) {
+        if (result.hasErrors()) {
+            return "/forms/categoryAdd";
+        }
         categoryDao.save(category);
         return "redirect:/category/showAll";
+    }
+
+    @ModelAttribute("art")
+    public Collection<Article> populateArticles() {
+        return this.articleDao.getAll();
+
     }
 
     }
