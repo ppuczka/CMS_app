@@ -15,15 +15,17 @@
 </head>
 <body class="p-3 mb-2 bg-dark text-white">
 <jsp:include page="/WEB-INF/views/links.jsp"></jsp:include>
-<H1>Edit selected Author</H1>
+<h4>Edit selected Article</h4>
 <form:form method="post"
-        modelAttribute="article">
-    Author First Name: <form:input path="firstName"/> <br/></br><br/>
-    Author Last Name: <form:input path="lastName"/> <br/>
-    <form:select path="articles" items="${articles}" itemValue="id" itemLabel="title" multiple="true"/> <br/>
-        <input type="submit" value="save">
-        <form:hidden path="id"/>
+           modelAttribute="article">
+    Article Title: <form:input path="title"/> <br/></br><br/>
+    Article Author: <form:select path="author.id" items="${authors}" itemValue="id" itemLabel="lastName"/> <br/><br/><br/>
+    Article Categories: <form:select path="categories" items="${categories}" itemValue="id" itemLabel="name"/> <br/><br/><br/>
+    Article Content: <form:input path="content"/><br/><br/><br/>
+    <form:errors path="*"/>
+    <input type="submit" value="save">
 </form:form>
+
 
 
 

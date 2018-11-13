@@ -15,15 +15,14 @@
 </head>
 <body class="p-3 mb-2 bg-dark text-white">
 <jsp:include page="/WEB-INF/views/links.jsp"></jsp:include>
-<H1>Add new Category</H1>
+<H1>Add new Article</H1>
 <form:form method="post"
         modelAttribute="article">
     Article Title: <form:input path="title"/> <br/></br><br/>
     Article Author: <form:select path="author.id" items="${authors}" itemValue="id" itemLabel="lastName"/> <br/><br/><br/>
-    Article Categories: <form:select path="categories" multiple="true" items="${categories}" itemValue="id" itemLabel="name"/> <br/><br/><br/>
+    <%--Article Categories: <form:select path="category" multiple="true" items="${categories}" itemValue="id" itemLabel="name"/> <br/><br/><br/>--%>
     Article Content: <form:input path="content"/><br/><br/><br/>
-    <%--Article Date Created: <form:input path="created"/><br/><br/><br/>--%>
-    <%--Article Date Updated: <form:input path="updated"/><br/><br/><br/>--%>
+        <form:errors path="*"/>
         <input type="submit" value="save">
 </form:form>
 

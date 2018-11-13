@@ -2,6 +2,8 @@ package pl.coderslab.entity;
 
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -18,7 +20,7 @@ public class Article {
     private int id;
 
     @Column(length = 200)
-    @NotNull
+    @NotEmpty
     @Size(max = 200)
     private String title;
 
@@ -29,7 +31,7 @@ public class Article {
 //    @NotNull
     private List<Category> categories;
 
-    @NotNull
+    @NotEmpty
     @Size(max = 500)
     private String content;
 
@@ -37,7 +39,7 @@ public class Article {
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
 
-    @CreationTimestamp
+    @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date updated;
 

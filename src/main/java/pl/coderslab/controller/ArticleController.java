@@ -3,6 +3,7 @@ package pl.coderslab.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,7 @@ import pl.coderslab.entity.Article;
 import pl.coderslab.entity.Author;
 import pl.coderslab.entity.Category;
 
-import java.sql.Date;
+import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;
 
@@ -62,22 +63,27 @@ public class ArticleController {
 
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(@ModelAttribute Article article) {
-        System.out.println("article = " + article);
+    public String add(@Valid @ModelAttribute Article article, BindingResult result) {
+        if (result.hasErrors()) {
+            return "/forms/articleAdd";
+        }
         articleDao.save(article);
         return "redirect:/article/showAll";
     }
 
     @RequestMapping(value ="edit/{id}", method = RequestMethod.GET)
-    public String edit(Model model, @PathVariable int id) {
+    public String edit (Model model, @PathVariable int id) {
         Article article = articleDao.findById(id);
         model.addAttribute("article", article);
         return "/forms/articleEdit";
     }
 
     @RequestMapping(value = "/edit/**", method = RequestMethod.POST)
-    public String edit(@ModelAttribute Article article) {
-        articleDao.update(article);
+    public String edit(@Valid @ModelAttribute Article article, BindingResult result) {
+        if (result.hasErrors()) {
+            return "/forms/articleEdit";
+        }
+        articleDao.save(article);
         return "redirect:/article/showAll";
     }
 

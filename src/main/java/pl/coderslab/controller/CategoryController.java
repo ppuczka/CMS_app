@@ -45,10 +45,10 @@ public class CategoryController {
 
 
     @RequestMapping(value = "/catEdit/**", method = RequestMethod.POST)
-    public String processForm(@Valid @ModelAttribute Category category, BindingResult result) {
-        if (result.hasErrors()) {
-            return "/catEdit/{id}";
-        }
+    public String processForm(@ModelAttribute Category category) {
+//        if (result.hasErrors()) {
+//            return "/catEdit/{id}";
+//        }
         categoryDao.update(category);
         return "redirect:/category/showAll";
     }
@@ -81,8 +81,8 @@ public class CategoryController {
         return "redirect:/category/showAll";
     }
 
-    @ModelAttribute("art")
-    public Collection<Article> populateArticles() {
+    @ModelAttribute("articles")
+    public List<Article> populateArticles() {
         return this.articleDao.getAll();
 
     }
