@@ -41,7 +41,7 @@
             <td>${article.title}</td>
             <td>${article.author.firstName} ${article.author.lastName}</td>
             <td><c:forEach items="${article.categories}" var="category">
-                    ${category.description}</td>
+                    ${category.name}</td>
             </c:forEach>
             <td><a href="/article/delConfirm/${article.id}">Delete Article ||</a>
                 <a href="/article/edit/${article.id}">Edit Article</a></td></td>

@@ -20,7 +20,7 @@
         modelAttribute="article">
     Article Title: <form:input path="title"/> <br/></br><br/>
     Article Author: <form:select path="author.id" items="${authors}" itemValue="id" itemLabel="lastName"/> <br/><br/><br/>
-    <%--Article Categories: <form:select path="category" multiple="true" items="${categories}" itemValue="id" itemLabel="name"/> <br/><br/><br/>--%>
+    Article Categories: <form:select path="categories" multiple="true" items="${categories}" itemValue="id" itemLabel="name"/> <br/><br/><br/>
     Article Content: <form:input path="content"/><br/><br/><br/>
         <form:errors path="*"/>
         <input type="submit" value="save">

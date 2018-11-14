@@ -27,10 +27,9 @@ public class Article {
     @OneToOne(fetch = FetchType.EAGER)
     private Author author;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-//    @NotNull
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     private List<Category> categories;
-
+//CascadeType.PERSIST,
     @NotEmpty
     @Size(max = 500)
     private String content;

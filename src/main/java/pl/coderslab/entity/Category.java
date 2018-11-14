@@ -21,7 +21,7 @@ public class Category {
     @Column(nullable = true)
     private String description;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "categories")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "categories", cascade = CascadeType.ALL)
     private List<Article> articles = new ArrayList<>();
 
     public Category() {

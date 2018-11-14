@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -17,6 +18,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import pl.coderslab.converter.ArticleConverter;
+import pl.coderslab.converter.CategoryConverter;
 
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
@@ -69,5 +72,23 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
+
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(getCategoryConverter());
+        registry.addConverter(getArticleConverter());
+    }
+
+    @Bean
+    public CategoryConverter getCategoryConverter() {
+        return new CategoryConverter();
+    }
+
+
+    @Bean
+    public ArticleConverter getArticleConverter() {
+        return new ArticleConverter();
+    }
+
 
 }
