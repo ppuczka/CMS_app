@@ -25,6 +25,7 @@
         <th>Created</th>
         <th>Updated</th>
         <th>Title</th>
+        <th>Draft</th>
         <th>Author</th>
         <th>Categories</th>
         <th>Action</th>
@@ -39,16 +40,17 @@
             <td>${article.created}</td>
             <td>${article.updated}</td>
             <td>${article.title}</td>
+            <td>${article.draft}</td>
             <td>${article.author.firstName} ${article.author.lastName}</td>
-            <td><c:forEach items="${article.categories}" var="category">
-                    ${category.name}</td>
+            <td><c:forEach items="${article.categories}" var="category"><td/>
+                ${category.name}
             </c:forEach>
             <td><a href="/article/delConfirm/${article.id}">Delete Article ||</a>
                 <a href="/article/edit/${article.id}">Edit Article</a></td></td>
         </tr>
     </c:forEach>
     <a href="/article/add/">Add new Article</a>
-
+    <a href="/draft/add/">Add new Draft</a>
     </tbody>
 </table>
 

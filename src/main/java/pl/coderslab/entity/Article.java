@@ -4,10 +4,13 @@ package pl.coderslab.entity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.NotEmpty;
+import pl.coderslab.validator.DraftValidationGroup;
 import pl.coderslab.validator.SizeLimit;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.validation.groups.Default;
 import java.util.Date;
 import java.util.List;
 
@@ -20,19 +23,21 @@ public class Article {
     private int id;
 
     @Column(length = 200)
-    @NotEmpty
-    @Size(max = 200)
+    @NotEmpty(groups = {DraftValidationGroup.class, Default.class})
+    @Size(max = 200, groups = {DraftValidationGroup.class, Default.class})
     private String title;
 
     @OneToOne(fetch = FetchType.EAGER)
+    @NotNull
     private Author author;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
-    @SizeLimit(limit = 4)
-    private List<Category> categories;
-//CascadeType.PERSIST,
     @NotEmpty
-    @Size(max = 500)
+//    @SizeLimit(limit = 4, groups = Default.class)
+    private List<Category> categories;
+
+    @NotEmpty(groups = {DraftValidationGroup.class, Default.class})
+    @Size(max = 500, groups = {DraftValidationGroup.class, Default.class})
     private String content;
 
     @CreationTimestamp
@@ -43,6 +48,8 @@ public class Article {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updated;
 
+    private boolean draft;
+
     public Article() {
     }
 
@@ -52,6 +59,14 @@ public class Article {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public boolean isDraft() {
+        return draft;
+    }
+
+    public void setDraft(boolean draft) {
+        this.draft = draft;
     }
 
     public String getTitle() {
@@ -101,7 +116,6 @@ public class Article {
     public void setUpdated(Date updated) {
         this.updated = updated;
     }
-
 
     @Override
     public String toString() {

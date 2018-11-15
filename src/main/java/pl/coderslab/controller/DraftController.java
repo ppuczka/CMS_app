@@ -4,34 +4,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.coderslab.dao.ArticleDao;
-import pl.coderslab.dao.AuthorDao;
-import pl.coderslab.dao.CategoryDao;
 import pl.coderslab.entity.Article;
-import pl.coderslab.entity.Author;
-import pl.coderslab.entity.Category;
+import pl.coderslab.validator.DraftValidationGroup;
 
-import javax.validation.Valid;
-import java.util.Collection;
 import java.util.List;
 
-@RequestMapping("/article")
 @Controller
-public class ArticleController {
+@RequestMapping("/draft")
+public class DraftController {
 
     @Autowired
-    private ArticleDao articleDao;
-
-    @Autowired
-    private CategoryDao categoryDao;
-
-    @Autowired
-    private AuthorDao authorDao;
-
+    ArticleDao articleDao;
 
     @RequestMapping(value = "/showAll", method = RequestMethod.GET)
     public String showAll(Model model) {
@@ -57,17 +46,17 @@ public class ArticleController {
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addForm(Model model) {
         Article article = new Article();
-        model.addAttribute("article",article);
-        return "/forms/articleAdd";
+        model.addAttribute("draft",article);
+        return "/forms/draftAdd";
     }
 
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(@Valid @ModelAttribute Article article, BindingResult result) {
+    public String add(@Validated(DraftValidationGroup.class) @ModelAttribute(name = "draft") Article article, BindingResult result) {
         if (result.hasErrors()) {
-            return "/forms/articleAdd";
+            return "/forms/draftAdd";
         }
-        article.setDraft(false);
+        article.setDraft(true);
         articleDao.save(article);
         return "redirect:/article/showAll";
     }
@@ -75,33 +64,18 @@ public class ArticleController {
     @RequestMapping(value ="edit/{id}", method = RequestMethod.GET)
     public String edit (Model model, @PathVariable int id) {
         Article article = articleDao.findById(id);
-        model.addAttribute("article", article);
-        return "/forms/articleEdit";
+        model.addAttribute("draft", article);
+        return "/forms/draftEdit";
     }
 
     @RequestMapping(value = "/edit/**", method = RequestMethod.POST)
-    public String edit(@Valid @ModelAttribute Article article, BindingResult result) {
+    public String edit(@Validated(DraftValidationGroup.class) @ModelAttribute(name = "draft") Article article, BindingResult result) {
         if (result.hasErrors()) {
-            return "/forms/articleEdit";
+            return "/forms/draftEdit";
         }
-        article.setDraft(false);
+        article.setDraft(true);
         articleDao.save(article);
         return "redirect:/article/showAll";
     }
-
-
-    @ModelAttribute("categories")
-    public Collection<Category> populateCategories() {
-        return this.categoryDao.getAll();
-
-    }
-
-    @ModelAttribute("authors")
-    public Collection<Author> populatedAuthors() {
-        return this.authorDao.getAll();
-
-    }
-
-
 
 }
