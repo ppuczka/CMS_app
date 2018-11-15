@@ -4,9 +4,9 @@ package pl.coderslab.entity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.NotEmpty;
+import pl.coderslab.validator.SizeLimit;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
@@ -27,7 +27,8 @@ public class Article {
     @OneToOne(fetch = FetchType.EAGER)
     private Author author;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE})
+    @SizeLimit(limit = 4)
     private List<Category> categories;
 //CascadeType.PERSIST,
     @NotEmpty
@@ -108,7 +109,6 @@ public class Article {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", author=" + author +
-                ", categories=" + categories +
                 ", content='" + content + '\'' +
                 ", created=" + created +
                 ", updated=" + updated +
